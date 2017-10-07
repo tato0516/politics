@@ -1,0 +1,56 @@
+extends layout
+
+block content
+ - newsarticles = [{ articletitle: "test", bodytext: "testBody1", editedon: { type: Date, default: Date.now }, imgurl: "../images/1.jpg" },{ articletitle: "test1", bodytext: "testBody1", editedon: { type: Date, default: Date.now }, imgurl: "../images/3.jpg" },{ articletitle: "test2", bodytext: "testBody2", editedon: { type: Date, default: Date.now }, imgurl: "../images/2.jpg" }];
+   div.container
+             #myCarousel.carousel.slide(data-ride="carousel",data-interval="4000")
+                 ol.carousel-indicators
+                    li.active(data-target='#myCarousel', data-slide-to='0')
+                    li(data-target='#myCarousel', data-slide-to='1')
+                    li(data-target='#myCarousel', data-slide-to='2')
+                 .carousel-inner
+                     -var i = 0 
+                     - for newsarticle in newsarticles
+                         if i == 0
+                             .item.d-block.w-100.active
+                                 a(href='/politics/politic') 
+                                  img(src='#{newsarticle.imgurl}')
+                                 .carousel-caption #{newsarticle.articletitle}
+                             -i++
+                         else
+                             .item
+                                 img.d-block.w-100(src='#{newsarticle.imgurl}')
+                                 .carousel-caption #{newsarticle.articletitle}
+                             -i++ 
+                 a.left.carousel-control(href="#myCarousel", role='button' data-slide="prev")
+                    span.icon-prev
+                 a.right.carousel-control(href="#myCarousel", role='button' data-slide="next")
+                    span.icon-next
+   hr
+   div.table-responsive
+    table.table
+     thead
+      tr
+       th #
+       th Party
+       th Number of cases
+       th Number of resignations
+     tbody
+      tr
+       th 1
+       th 
+        a(href='/party/members') Cambio Radical
+       th 15
+       th 2
+      tr
+       th 2
+       th 
+        a(href='/party/members') Partido Conservador
+       th 18
+       th 3
+     tr
+       td 3
+       td 
+        a(href='/party/members') Partido de la U
+       td 20
+       td 1

@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+   meta(name='viewport', content='width=device-width, initial-scale=1.0')
+   title= title
+   link(rel='stylesheet', href='/bootstrap/css/amelia.bootstrap.css')
+   link(rel='stylesheet', href='/stylesheets/style.css')
+   script(src='/javascripts/jquery-1.12.js')     
+  body
+    - var navmenu = { Dashboard: '/politics', Upload: '/upload' }
+
+    nav.navbar.navbar-default(role='navigation')
+      div.navbar-header
+        button(type='button',data-toggle='collapse',data-target='#jcs-navbar-collapse-1').navbar-toggle
+          span.sr-only Toggle navigation
+          span.iconbar
+          span.iconbar
+          span.iconbar
+        a(href='/about').navbar-brand PoliticMemory
+      div#jcs-navbar-collapse-1.collapse.navbar-collapse
+        ul.nav.navbar-nav
+
+          each href, key in navmenu
+            if key == pagekey
+              li.active: a(href=href)= key
+            else
+              li: a(href=href)= key
+ 
+        form(role='search').navbar-form.navbar-left
+          div.form-group
+            input(type='text',placeholder='Search').form-control
+          | &nbsp;
+          button(type='submit').btn.btn-default Submit
+
+        ul.nav.navbar-nav.navbar-right
+          li: a(href='#') Link
+          li.dropdown
+            a(href='#',data-toggle='dropdown').dropdown-toggle My Account
+              span.caret
+            ul.dropdown-menu
+              li: a(href='#') Account Settings
+              li: a(href='#') Logout 
+     
+     script(src='/bootstrap/js/bootstrap.min.js')
+    block content
